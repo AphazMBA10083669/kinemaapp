@@ -51,15 +51,17 @@ Features
 
 ### Installation ###
 
-1. Clone the repository: https://github.com/VCDN-2024/opsc7312-part-2-AphazMBA10083669.git
+1. Clone the repository: https://github.com/AphazMBA10083669/kinemaapp.git
    
-   git clone: https://github.com/VCDN-2024/opsc7312-part-2-AphazMBA10083669.git
+   git clone: https://github.com/AphazMBA10083669/kinemaapp.git
 
 2. Open the project in Android Studio.
 
 3. Set up your API keys and OAuth credentials for Google SSO, IMDb API (RapidAPI), and Azure Blob Storage in the project’s `local.properties` or environment variables.
 
-4. Build and run the application on an Android device or emulator.
+4. Install the Flutter SDK and the Dart SDK
+
+5. Build and run the application on an Android device or emulator.
 
 ###  Permissions ###
 - Internet access
