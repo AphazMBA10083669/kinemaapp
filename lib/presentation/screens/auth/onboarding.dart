@@ -1,45 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kinemaapp/logic/provider/languageprovider.dart';
 import 'package:kinemaapp/presentation/screens/auth/signup.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
-
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
-  int _currentPage = 0;
-
   final List<String> _images = [
     'assets/images/onboard1.svg',
     'assets/images/onboard2.svg',
     'assets/images/onboard3.svg',
   ];
 
-  final List<String> _texts = [
-    'Discover movies effortlessly with Kinema.',
-    'Get detailed information and reviews.',
-    'Rate and share your favorite movies!',
-  ];
+  int _currentPage = 0; // Track the current page
 
-  void _onPageChanged(int index) {
-    setState(() {
-      _currentPage = index;
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page!.round();
+      });
     });
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final languageProvider = Provider.of<LanguageProvider>(context);
+
     return Scaffold(
       body: Stack(
         children: [
           PageView.builder(
             controller: _pageController,
             itemCount: _images.length,
-            onPageChanged: _onPageChanged,
             itemBuilder: (context, index) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -53,8 +58,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 500),
                     child: Text(
-                      _texts[index],
-                      key: ValueKey(_texts[index]),
+                      languageProvider.texts['discover_movies'] ?? 'Discover movies effortlessly with Kinema.',
+                      key: ValueKey(languageProvider.texts['discover_movies']),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 24,
@@ -63,6 +68,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                   ),
+                  // Language selection button on the last screen
+                  if (index == _images.length - 1)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: ElevatedButton(
+                        onPressed: () => _showLanguageDialog(context, languageProvider),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                        ),
+                        child: Text(
+                          languageProvider.texts['choose_language'] ?? 'Choose Language',
+                          style: const TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
                 ],
               );
             },
@@ -97,14 +121,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 15,
-                          horizontal: 30,
-                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                       ),
-                      child: const Text(
-                        'Create Account',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      child: Text(
+                        languageProvider.texts['create_account'] ?? 'Create Account',
+                        style: const TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     )
                   : Row(
@@ -125,9 +146,61 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
             ),
           ),
+          Positioned(
+            top: 20,
+            right: 20,
+            child: IconButton(
+              icon: Icon(Icons.language, color: Colors.white),
+              onPressed: () => _showLanguageDialog(context, languageProvider),
+            ),
+          ),
         ],
       ),
       backgroundColor: const Color(0xFF71027d),
+    );
+  }
+
+  void _showLanguageDialog(BuildContext context, LanguageProvider languageProvider) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(languageProvider.texts['choose_language'] ?? 'Choose Language'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: Text('English'),
+                onTap: () {
+                  languageProvider.changeLanguage('en');
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Zulu'),
+                onTap: () {
+                  languageProvider.changeLanguage('zu');
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Xhosa'),
+                onTap: () {
+                  languageProvider.changeLanguage('xh');
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('Afrikaans'),
+                onTap: () {
+                  languageProvider.changeLanguage('af');
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

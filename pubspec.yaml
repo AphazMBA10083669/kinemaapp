@@ -39,6 +39,8 @@ dependencies:
   url_launcher:
   font_awesome_flutter: ^10.8.0
   flutter_svg: ^2.0.16
+  shared_preferences:
+  provider:
 
 dev_dependencies:
   flutter_test:

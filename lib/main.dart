@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:kinemaapp/presentation/screens/auth/splash.dart';
+import 'package:kinemaapp/logic/provider/languageprovider.dart';
+import 'package:kinemaapp/presentation/screens/auth/onboarding.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LanguageProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      title: 'Kinema',
+      home: OnboardingScreen(),
     );
   }
 }
