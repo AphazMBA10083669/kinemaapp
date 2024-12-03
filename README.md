@@ -2,14 +2,14 @@
 
 A new Flutter project.
 
-## Getting Started
+# How to Download and run
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a Flutter application which was made nessacary for this IMDB-like applicaion.
 
-A few resources to get you started if this is your first Flutter project:
+A few resources to get for your devicice for you to use use the app:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Installing Flutter]([https://docs.flutter.dev/get-started/codelab](https://docs.flutter.dev/get-started/install))
+- [Installing Dsk](https://docs.flutter.dev/cookbook)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
