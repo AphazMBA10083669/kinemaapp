@@ -11,27 +11,30 @@ Features
    The app supports Google Sign-In for seamless authentication. Users can log in using their Google account, providing a quick and secure way to access the app.
 
 3. IMDb API Integration  
-   The app integrates with the IMDb API (via RapidAPI) to provide detailed information on movies, TV shows, and video games. Users can search, browse, and view information directly sourced from IMDb.
+   The app integrates with the IMDb API (via RapidAPI) to provide detailed information on movies coming form top rated or popular, and even from premeiring or upcoming films. Users can search, browse, and view information directly sourced from IMDb API.
 
 4. Custom RESTful API 
    The application is built with a custom RESTful API to manage backend operations, offering efficient data retrieval and storage while keeping the app’s content dynamic and up-to-date.
+   
+6. Search Bar 
+A person can search for their specific movie in the search bar
 
-5. Rating 
-  The application once a user selects their movie after searching, the 
+7. Rating 
+  The application once a user selects their movie after searching, the user can rate it from 1 to 5 stars in the represation of the emojies(the slidebar)
 
-6. Biometric Authentication
+8. Biometric Authentication
    For enhanced security, biometric authentication (such as fingerprint or face recognition) is implemented. This allows users to quickly and securely access the app using their device's biometric sensors.
 
-7. Offline Mode  
+9. Offline Mode  
    The app includes an Offline Mode feature to allow users to access previously viewed data without an active internet connection. Data syncs when a connection is re-established.
 
-8. Multi-Language Support
+10. Multi-Language Support
    Multi-language support enables users to switch between English and two South African languages, ensuring a more inclusive user experience. The languages can be changed via the settings.
 
-9. Push Notifications  
+11. Push Notifications  
    Push notifications keep users informed of updates, recommendations, and news within the app, enhancing engagement and delivering timely information.
 
-10. Settings Pages 
+12. Settings Pages 
     Kinema includes several settings pages for users to personalize their experience:
     - User Profile Page: Edit profile details, such as username and profile picture.
     - Security Page: Manage login credentials and biometric authentication.
@@ -44,10 +47,10 @@ Features
 
 ### Prerequisites###
 - Android Studio (latest version recommended)
-- Uisnf Kotlin for Android development
+- Using Flutter for Android development for this king of application
 - Google Account for SSO integration
 - RapidAPI account to gain access to the IMDb API access
-- Azure Blob Storage account for media storage
+- Firebase for saving user Information(sign-up info and langages)
 
 ### Installation ###
 
@@ -74,9 +77,9 @@ Features
 - Google SSO API for secure login
 - IMDb API via RapidAPI for fetching entertainment data
 - Custom RESTful API for backend operations
-- Azure Blob Storage for secure media storage
+- Firbase for secure media storage and user information
 - Push Notifications via Firebase
-- Multi-language support with localization for English and two South African languages
+- Multi-language support with localization for English and three South African languages
 
 ## Contributing
 
@@ -116,7 +119,7 @@ Here is link for this apps terms and conditions for the user: https://www.freepr
 
 ## Demo
 
-Youtub Link:
+Youtub Link: https://youtu.be/3wQazIJNyXg
 
 # How to Download and run
 
